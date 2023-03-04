@@ -1,8 +1,9 @@
 import { View, Text } from "react-native";
 import React, { Fragment } from "react";
-import { useCards } from "../../hooks/useCards";
-import { Loader } from "../../components/customs/Loader";
-import { CardItem } from "../../components/cards/CardItem";
+import { useCards } from "../../../hooks/useCards";
+import { CardItem } from "../../../components/cards/CardItem";
+import { Loader } from "../../../components/customs/Loader";
+
 
 export const CardsList = () => {
   const { cards, isLoading } = useCards();

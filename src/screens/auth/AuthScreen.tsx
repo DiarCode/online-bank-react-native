@@ -4,7 +4,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { Loader } from "../../components/customs/Loader";
 import { TextField } from "../../components/customs/Field";
 import { Button } from "../../components/customs/Button";
-import AlertMessage from "../../components/alerts/AlertMessage";
+import { AlertMessage } from "../../components/alerts/AlertMessage";
 
 interface AuthDTO {
   email: string;

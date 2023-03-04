@@ -6,7 +6,10 @@ interface AlertMessageProps {
   text: string;
 }
 
-const AlertMessage: FC<AlertMessageProps> = ({ type = "default", text }) => {
+export const AlertMessage: FC<AlertMessageProps> = ({
+  type = "default",
+  text,
+}) => {
   const getContent = () => {
     switch (type) {
       case "error":
@@ -26,5 +29,3 @@ const AlertMessage: FC<AlertMessageProps> = ({ type = "default", text }) => {
 
   return <>{content}</>;
 };
-
-export default AlertMessage;

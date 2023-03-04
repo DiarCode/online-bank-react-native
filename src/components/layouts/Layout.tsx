@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import { ScrollView, SafeAreaView, View } from "react-native";
+import React, { FC, useMemo } from "react";
+import { ScrollView, SafeAreaView, View, Platform } from "react-native";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -7,10 +7,15 @@ interface LayoutProps {
 }
 
 export const Layout: FC<LayoutProps> = ({ children, isScrollable = true }) => {
+  const style = useMemo(() => {
+    const paddingByOS = Platform.OS === "android" ? "pt-16" : "";
+    return `flex flex-1 p-5 relative w-full h-full ${paddingByOS}`;
+  }, [isScrollable]);
+
   const renderedChildren = isScrollable ? (
-    <ScrollView className="p-5 relative w-full h-full">{children}</ScrollView>
+    <ScrollView className={style}>{children}</ScrollView>
   ) : (
-    <View className="p-5 relative w-full h-full">{children}</View>
+    <View className={style}>{children}</View>
   );
   return (
     <SafeAreaView className="flex-1 bg-white w-screen h-screen">

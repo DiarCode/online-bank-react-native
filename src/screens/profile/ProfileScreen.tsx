@@ -5,11 +5,11 @@ import { useProfile } from "../../hooks/useProfile";
 import { TextField } from "../../components/customs/Field";
 import { Button } from "../../components/customs/Button";
 import { COLORS } from "../../styles/shared-styles";
-import Title from "../../components/title/Title";
+import { Title } from "../../components/title/Title";
 import { Loader } from "../../components/customs/Loader";
 import { useAuth } from "../../hooks/useAuth";
 import { useUpdateProfile } from "../../hooks/useUpdateProfile";
-import AlertMessage from "../../components/alerts/AlertMessage";
+import { AlertMessage } from "../../components/alerts/AlertMessage";
 
 export const ProfileScreen = () => {
   const { logout } = useAuth();

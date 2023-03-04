@@ -1,25 +1,25 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import { Layout } from "../../components/layouts/Layout";
-import { Header } from "./Header";
 import { StoriesCarousel } from "../../components/stories/StoriesCarousel";
-import { CardsList } from "./CardsList";
+import { CardsList } from "./components/CardsList";
 import { Button } from "../../components/customs/Button";
+import { Header } from "./components/Header";
 
 export const HomeScreen = () => {
   return (
-    <Layout>
+    <Layout isScrollable={false}>
       <Header />
 
       <View className="mt-8">
         <StoriesCarousel />
       </View>
 
-      <View className="mt-8">
+      <View className="mt-8 flex-1">
         <CardsList />
       </View>
 
-      <View className="flex-1 justify-end">
+      <View className="absolute bottom-0 w-screen p-5">
         <Button onPress={() => {}} title={"Apply for a new card"} />
       </View>
     </Layout>

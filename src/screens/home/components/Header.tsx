@@ -1,10 +1,11 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
-import { Avatar } from "../../components/avatar/Avatar";
-import { useAppNavigation } from "../../hooks/useRoutes";
+
 import { Entypo } from "@expo/vector-icons";
-import { useProfile } from "../../hooks/useProfile";
-import { Loader } from "../../components/customs/Loader";
+import { useProfile } from "../../../hooks/useProfile";
+import { useAppNavigation } from "../../../hooks/useRoutes";
+import { Loader } from "../../../components/customs/Loader";
+import { Avatar } from "../../../components/avatar/Avatar";
 
 export const Header = () => {
   const { isLoading, name } = useProfile();
