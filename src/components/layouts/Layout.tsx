@@ -1,3 +1,4 @@
+import { StatusBar } from "expo-status-bar";
 import React, { FC, useMemo } from "react";
 import { ScrollView, SafeAreaView, View, Platform } from "react-native";
 
@@ -18,7 +19,8 @@ export const Layout: FC<LayoutProps> = ({ children, isScrollable = true }) => {
     <View className={style}>{children}</View>
   );
   return (
-    <SafeAreaView className="flex-1 bg-white w-screen h-screen">
+    <SafeAreaView className="flex-1 bg-white">
+      <StatusBar style="dark" />
       {renderedChildren}
     </SafeAreaView>
   );

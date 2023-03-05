@@ -15,7 +15,6 @@ import {
   doc,
   limit,
   onSnapshot,
-  orderBy,
   query,
   updateDoc,
   where,

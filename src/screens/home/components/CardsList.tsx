@@ -1,14 +1,13 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import React, { Fragment } from "react";
 import { useCards } from "../../../hooks/useCards";
 import { CardItem } from "../../../components/cards/CardItem";
 import { Loader } from "../../../components/customs/Loader";
 
-
 export const CardsList = () => {
   const { cards, isLoading } = useCards();
 
-  const bottomLine = <View className="border-b-2 border-[#E0E1E2]" />;
+  const bottomLine = <View className="border-b-[1px] border-[#E0E1E2]" />;
 
   const renderedCards =
     cards.length === 0 ? (
@@ -23,5 +22,9 @@ export const CardsList = () => {
     );
 
   const renderedContent = isLoading ? <Loader /> : renderedCards;
-  return <>{renderedContent}</>;
+  return (
+    <ScrollView showsVerticalScrollIndicator={false} className="mb-20">
+      {renderedContent}
+    </ScrollView>
+  );
 };
