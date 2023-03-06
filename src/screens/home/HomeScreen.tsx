@@ -21,7 +21,7 @@ export const HomeScreen = () => {
         <CardsList />
       </View>
 
-      <View className="absolute bottom-0 w-screen p-5">
+      <View className="absolute bottom-0 w-screen p-3">
         <Button
           onPress={() => {
             navigate("CreateCard");

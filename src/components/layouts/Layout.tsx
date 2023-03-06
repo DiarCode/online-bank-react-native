@@ -10,7 +10,7 @@ interface LayoutProps {
 export const Layout: FC<LayoutProps> = ({ children, isScrollable = true }) => {
   const style = useMemo(() => {
     const paddingByOS = Platform.OS === "android" ? "pt-16" : "";
-    return `flex flex-1 p-5 relative w-full h-full ${paddingByOS}`;
+    return `flex flex-1 p-3 relative w-full h-full ${paddingByOS}`;
   }, [isScrollable]);
 
   const renderedChildren = isScrollable ? (

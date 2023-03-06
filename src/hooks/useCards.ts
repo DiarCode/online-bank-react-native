@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { FirebaseService } from "../services/firebase";
 import { ICard } from "../types/card";
 import { useAuth } from "./useAuth";
@@ -8,7 +8,7 @@ export const useCards = () => {
   const [cards, setCards] = useState<ICard[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
+  const loadData = useCallback(() => {
     if (!user) return;
     setIsLoading(true);
     FirebaseService.getCards(user.uid, c => {
@@ -17,7 +17,14 @@ export const useCards = () => {
     });
   }, []);
 
-  const values = useMemo(() => ({ cards, isLoading }), [isLoading, cards]);
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const values = useMemo(
+    () => ({ cards, isLoading, loadData }),
+    [isLoading, cards]
+  );
 
   return values;
 };
