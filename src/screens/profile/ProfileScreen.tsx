@@ -2,7 +2,7 @@ import { View, Text } from "react-native";
 import React, { useState } from "react";
 import { Layout } from "../../components/layouts/Layout";
 import { useProfile } from "../../hooks/useProfile";
-import { TextField } from "../../components/customs/Field";
+import { InputField } from "../../components/customs/Field";
 import { Button } from "../../components/customs/Button";
 import { COLORS } from "../../styles/shared-styles";
 import { Title } from "../../components/title/Title";
@@ -26,7 +26,7 @@ export const ProfileScreen = () => {
     ) : (
       <>
         <View className="mt-3">
-          <TextField
+          <InputField
             onChange={v => setName(v)}
             value={name}
             placeholder={"Enter new name"}

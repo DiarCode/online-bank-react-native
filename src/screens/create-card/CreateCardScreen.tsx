@@ -41,7 +41,7 @@ export const CreateCardScreen = () => {
 
   return (
     <Layout>
-      <View className="mb-7">
+      <View className="mb-8">
         <Title title={"Apply for a new card"} centered={true} />
         <Text className="text-center text-gray-500">
           Please, fill out all nesseccary fields

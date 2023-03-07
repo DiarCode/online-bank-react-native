@@ -22,6 +22,7 @@ import {
 import { IProfile } from "../hooks/useProfile";
 import { IStory } from "../types/story";
 import { ICard } from "../types/card";
+import { SignUpDTO } from "../types/dto/singup";
 
 export class FirebaseService {
   static logout = () => {
@@ -36,10 +37,11 @@ export class FirebaseService {
     return signInWithEmailAndPassword(firebaseAuth, email, password);
   };
 
-  static addToUserCollection = (user: User) => {
+  static addToUserCollection = (dto: SignUpDTO, user: User) => {
     return addDoc(collection(firebaseDB, FIREBASE_COLLECTIONS.users), {
       userId: user.uid,
-      displayName: "Enter your name",
+      displayName: dto.name,
+      phone: dto.phone,
     });
   };
 

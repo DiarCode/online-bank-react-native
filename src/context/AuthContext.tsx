@@ -1,15 +1,15 @@
 import { User, onAuthStateChanged } from "firebase/auth";
 import { FC, createContext, useEffect, useMemo, useState } from "react";
-import { Alert } from "react-native";
 import { firebaseAuth } from "../config/firebase/firebase";
 import { FirebaseService } from "../services/firebase";
+import { SignUpDTO } from "../types/dto/singup";
 
 interface IContext {
   user: User | null;
   error: string;
   isLoading: boolean;
   setError: (v: string) => void;
-  register: (email: string, password: string) => Promise<void>;
+  register: (dto: SignUpDTO) => Promise<void>;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
 }
@@ -26,11 +26,11 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const registerHandler = async (email: string, password: string) => {
+  const registerHandler = async (dto: SignUpDTO) => {
     setIsLoading(true);
     try {
-      const { user } = await FirebaseService.register(email, password);
-      await FirebaseService.addToUserCollection(user);
+      const { user } = await FirebaseService.register(dto.email, dto.password);
+      await FirebaseService.addToUserCollection(dto, user);
     } catch (error: any) {
       console.log(error);
       setError(JSON.stringify(error?.code));

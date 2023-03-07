@@ -1,11 +1,12 @@
-import { View, Text, ScrollView, FlatList, RefreshControl } from "react-native";
+import { View, FlatList, RefreshControl } from "react-native";
 import React, { memo } from "react";
 import { useCards } from "../../../hooks/useCards";
 import { CardItem } from "../../../components/cards/CardItem";
 import { ICard } from "../../../types/card";
+import { Text } from "react-native";
 
 const CardItemView = memo(({ c, i, s }: { c: ICard; i: number; s: number }) => {
-  const bottomLine = <View className="border-b-2 border-[#E0E1E2]" />;
+  const bottomLine = <View className="border-b-2 border-[#eeeeef]" />;
 
   return (
     <>
@@ -19,15 +20,23 @@ export const CardsList = () => {
   const { cards, isLoading, loadData } = useCards();
 
   return (
-    <FlatList
-      data={cards}
-      keyExtractor={c => c.id}
-      renderItem={({ item, index }) => (
-        <CardItemView key={item.id} c={item} i={index} s={cards.length} />
+    <>
+      {cards.length === 0 ? (
+        <Text className="text-center text-lg text-gray-400 mt-5">
+          Cards not found
+        </Text>
+      ) : (
+        <FlatList
+          data={cards}
+          keyExtractor={c => c.id}
+          renderItem={({ item, index }) => (
+            <CardItemView key={item.id} c={item} i={index} s={cards.length} />
+          )}
+          refreshControl={
+            <RefreshControl refreshing={isLoading} onRefresh={loadData} />
+          }
+        />
       )}
-      refreshControl={
-        <RefreshControl refreshing={isLoading} onRefresh={loadData} />
-      }
-    />
+    </>
   );
 };

@@ -6,14 +6,16 @@ interface ButtonProps {
   onPress: () => void;
   title: string;
   colors?: [string, string];
+  className?: string;
 }
 
 export const Button: FC<ButtonProps> = ({
   onPress,
   title,
   colors = [COLORS.yellow, COLORS.orange],
+  className,
 }) => {
-  const buttonClassName = `text-gray-800 rounded-xl w-full p-4`;
+  const buttonClassName = `text-gray-800 rounded-xl w-full p-4 ${className}`;
 
   return (
     <TouchableHighlight

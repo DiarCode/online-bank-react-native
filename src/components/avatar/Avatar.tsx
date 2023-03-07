@@ -8,7 +8,7 @@ interface AvatarProps {
 
 export const Avatar: FC<AvatarProps> = ({ name, size = "small" }) => {
   const isSmall = size === "small";
-  const sizeBasedStyle = `${isSmall ? "w-9 h-9" : "w-12 h-12"}`;
+  const sizeBasedStyle = `${isSmall ? "w-9 h-9" : "w-14 h-14"}`;
   const style = `rounded-full bg-gray-300 items-center justify-center ${sizeBasedStyle}`;
 
   const textStyle = `text-white font-medium ${isSmall ? "text-lg" : "text-xl"}`;

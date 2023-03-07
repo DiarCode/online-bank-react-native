@@ -7,7 +7,6 @@ import {
   useNavigationContainerRef,
 } from "@react-navigation/native";
 import { useAuth } from "../hooks/useAuth";
-import { AuthScreen } from "../screens/auth/AuthScreen";
 import { HomeScreen } from "../screens/home/HomeScreen";
 import { PaymentsScreen } from "../screens/payments/PaymentsScreen";
 import { ServicesScreen } from "../screens/services/ServicesScreen";
@@ -17,6 +16,9 @@ import { ProfileScreen } from "../screens/profile/ProfileScreen";
 import { CreateCardScreen } from "../screens/create-card/CreateCardScreen";
 import { Tabbar } from "../components/tabbar/Tabbar";
 import { useEffect, useState } from "react";
+import { PhoneTransferScreen } from "../screens/payments/PhoneTransferScreen";
+import { LoginScreen } from "../screens/auth/LoginScreen";
+import { SignupScreen } from "../screens/auth/SignupScreen";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -51,9 +53,13 @@ export const Routes = () => {
       <Stack.Screen name={"Support"} component={SupportScreen} />
       <Stack.Screen name={"Profile"} component={ProfileScreen} />
       <Stack.Screen name={"CreateCard"} component={CreateCardScreen} />
+      <Stack.Screen name={"PhoneTransfer"} component={PhoneTransferScreen} />
     </>
   ) : (
-    <Stack.Screen name={"Auth"} component={AuthScreen} />
+    <>
+      <Stack.Screen name={"Login"} component={LoginScreen} />
+      <Stack.Screen name={"Signup"} component={SignupScreen} />
+    </>
   );
 
   return (
@@ -71,25 +77,17 @@ export const Routes = () => {
   );
 };
 
-export const ROUTES_LIST = {
-  Home: "Home",
-  Payments: "Payments",
-  Services: "Services",
-  More: "More",
-  Support: "Support",
-  Profile: "Profile",
-  CreateCard: "CreateCard",
-};
-
 export type RootStackParamList = {
   Home: undefined;
-  Auth: undefined;
   Profile: undefined;
   Services: undefined;
   Support: undefined;
   Payments: undefined;
   More: undefined;
   CreateCard: undefined;
+  PhoneTransfer: undefined;
+  Login: undefined;
+  Signup: undefined;
 };
 
 export type RootNavigationProp = NativeStackNavigationProp<RootStackParamList>;

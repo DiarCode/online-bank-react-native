@@ -8,18 +8,18 @@ interface LayoutProps {
 }
 
 export const Layout: FC<LayoutProps> = ({ children, isScrollable = true }) => {
-  const style = useMemo(() => {
+  const layoutClassName = useMemo(() => {
     const paddingByOS = Platform.OS === "android" ? "pt-16" : "";
     return `flex flex-1 p-3 relative w-full h-full ${paddingByOS}`;
   }, [isScrollable]);
 
   const renderedChildren = isScrollable ? (
-    <ScrollView className={style}>{children}</ScrollView>
+    <ScrollView className={layoutClassName}>{children}</ScrollView>
   ) : (
-    <View className={style}>{children}</View>
+    <View className={layoutClassName}>{children}</View>
   );
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-white w-screen h-screen">
       <StatusBar style="dark" />
       {renderedChildren}
     </SafeAreaView>
