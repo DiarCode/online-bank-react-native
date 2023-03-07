@@ -5,6 +5,7 @@ import { FirebaseService } from "../services/firebase";
 export interface IProfile {
   userId: string;
   displayName: string;
+  phone: string;
   docId: string;
 }
 

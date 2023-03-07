@@ -63,6 +63,24 @@ export class FirebaseService {
     );
   };
 
+  static getProfileByPhone = (phone: string, cb: (p: IProfile) => void) => {
+    onSnapshot(
+      query(
+        collection(firebaseDB, FIREBASE_COLLECTIONS.users),
+        where("phone", "==", phone),
+        limit(1)
+      ),
+      s => {
+        const profile = s.docs.map(d => ({
+          ...d.data(),
+          docId: d.id,
+        }))[0] as IProfile;
+
+        cb(profile);
+      }
+    );
+  };
+
   static getStories = (cb: (s: IStory[]) => void) => {
     onSnapshot(
       query(collection(firebaseDB, FIREBASE_COLLECTIONS.stories)),

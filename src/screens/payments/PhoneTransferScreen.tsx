@@ -10,27 +10,24 @@ import { ICard } from "../../types/card";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Button } from "../../components/customs/Button";
 import { AlertMessage } from "../../components/alerts/AlertMessage";
-import { IProfile } from "../../hooks/useProfile";
-import { useAppNavigation } from "../../hooks/useRoutes";
+import { usePhoneTransfer } from "../../hooks/usePhoneTransfer";
 
 const DEFAULT_AMOUNTS = [100, 200, 500, 1000, 2000];
 
 export const PhoneTransferScreen = () => {
   const { cards } = useCards();
-  const navigation = useAppNavigation();
+  const { profile, getUserByPhone, setProfile, error } = usePhoneTransfer();
 
   const [phone, setPhone] = useState("");
-  const [foundPerson, setFoundPerson] = useState<IProfile | null>(null);
   const [amount, setAmount] = useState("");
   const [selectedCard, setSelectedCard] = useState<ICard | null>(null);
-  const [error, setError] = useState("");
 
   // Get profile when phone is entered
   useEffect(() => {
     if (phone.length == 11) {
-      console.log("Good");
+      getUserByPhone(phone);
     } else {
-      setFoundPerson(null);
+      setProfile(null);
     }
   }, [phone]);
 
@@ -55,15 +52,13 @@ export const PhoneTransferScreen = () => {
   ));
 
   const onTransferPress = async () => {
-    const values = [phone, foundPerson, amount, selectedCard];
+    const values = [phone, profile, amount, selectedCard];
 
     if (values.every(v => v !== null || v !== "")) {
       Alert.alert("Fill out all information");
       return;
     }
   };
-
-  console.log(error);
 
   return (
     <Layout>
@@ -74,7 +69,7 @@ export const PhoneTransferScreen = () => {
         </Text>
       </View>
 
-      <View className="mb-5">
+      <View className="mb-3">
         <RequiredText title={"Phone number"} />
         <InputField
           onChange={setPhone}
@@ -84,10 +79,21 @@ export const PhoneTransferScreen = () => {
         />
       </View>
 
+      {profile ? (
+        <View className="w-full p-3 bg-blue-500 rounded-lg mb-5">
+          <Text className="text-base text-white">{profile?.displayName}</Text>
+          <Text className="text-xs text-white">
+            Money will be transfered to the main card
+          </Text>
+        </View>
+      ) : (
+        <></>
+      )}
+
       <View className="mb-3">
         <RequiredText title={"Amout"} />
         <InputField
-          onChange={setAmount}
+          onChange={v => setAmount(v)}
           value={amount}
           placeholder={"Enter amount of money"}
           type="numeric"
